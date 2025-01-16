@@ -11,7 +11,7 @@ namespace Autoclicker;
 
 public partial class MainWindow
 {
-	[GeneratedRegex("^[0-9]+$")]
+	[GeneratedRegex(@"^\d+$")]
 	private static partial Regex MyRegex();
 	
 	private bool _active;
@@ -51,16 +51,18 @@ public partial class MainWindow
 	
 	private void InputTextBox_TextChanged(object sender, TextChangedEventArgs e)
 	{
+		InputTextBox.Text = InputTextBox.Text.Replace(" ", "");
+		
 		HintTextBlock.Visibility = string.IsNullOrEmpty(InputTextBox.Text)
 			? Visibility.Visible 
 			: Visibility.Collapsed;
 		
-		_clickInterval = Convert.ToInt32(InputTextBox.Text);
+		_clickInterval =  string.IsNullOrEmpty(InputTextBox.Text) ? 0 : Convert.ToInt32(InputTextBox.Text);
 	}
 
 	private void ToggleClicker()
 	{
-		if (string.IsNullOrEmpty(InputTextBox.Text)) return;
+		if (string.IsNullOrEmpty(InputTextBox.Text) || _clickInterval < 1) return;
 		
 		_active ^= true;
 		ToggleButton.Content = _active ? "Stop" : "Start";
