@@ -4,13 +4,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Haz clic aquí"
-                Width="100"
-                Height="50"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Click="ButtonClick"/>
-    </Grid>
+        Title="MainWindow" Height="150" Width="200">
+
+    <Border Padding="20">
+        <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBox Name="InputTextBox"
+                         Width="100"
+                         Height="25"
+                         Grid.Row="0"
+                         Margin="0,0,0,5"
+                         TextAlignment="Center"
+                         TextChanged="InputTextBox_TextChanged"
+                         PreviewTextInput="InputTextBox_PreviewTextInput"></TextBox>
+            
+                <TextBlock Name="HintTextBlock"
+                           Width="100"
+                           Height="25"
+                           Grid.Row="0"
+                           Text="Millis"
+                           Foreground="Gray"
+                           Margin="0,0,0,5"
+                           IsHitTestVisible="False"
+                           TextAlignment="Center"/>
+                
+                <Button Name="ToggleButton"
+                        Width="100"
+                        Height="30"
+                        Grid.Row="1"
+                        Margin="0,5,0, 0"
+                        Click="ToggleButton_ButtonClick">
+                    <AccessText>_Start</AccessText>
+                </Button>
+            </Grid>
+    </Border>
+    
+
 </Window>
